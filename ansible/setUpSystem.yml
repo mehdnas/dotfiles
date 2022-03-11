@@ -1,0 +1,16 @@
+- hosts: localhost
+  become: true
+
+  pre_tasks:
+
+    - name: Upgrade all packages
+      dnf:
+        name: "*"
+        state: latest
+
+  tasks:
+
+    - name: Install the LXDE desktop
+      dnf:
+        name: "@LXDE Desktop"
+        state: present
