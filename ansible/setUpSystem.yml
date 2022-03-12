@@ -57,9 +57,10 @@
       git:
         repo: 'https://github.com/mehdnas/dotfiles.git'
         dest: /home/mehdi/.dotfiles
+        version: test-exwm
 
     - name: Put dotfiles in home
       command:
         chdir: /home/mehdi/.dotfiles
         cmd: stow .
-        creates: /home/mehdi/.*
+        creates: /home/mehdi/.emacs.d

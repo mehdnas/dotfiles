@@ -1,4 +1,4 @@
 
 (require 'exwm)
 (require 'exwm-config)
-(exwm-config-init)
+(exwm-config-default)
