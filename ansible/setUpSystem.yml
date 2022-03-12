@@ -55,7 +55,7 @@
 
     - name: Clone the dotfiles repo
       git:
-        repo: 'https://github.com/mehdnas/dotfiles.git'
+        repo: 'git@github.com:mehdnas/dotfiles.git'
         dest: /home/mehdi/.dotfiles
         version: test-exwm
       become_user: mehdi
