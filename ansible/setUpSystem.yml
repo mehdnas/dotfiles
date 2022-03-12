@@ -45,3 +45,10 @@
       service:
         name: lightdm
         enabled: yes
+
+    - name: Use Emacs as the window manager
+      lineinfile:
+        regexp: "^window_manager="
+        line: "window_manager=emacs"
+        path: /etc/xdg/lxsession/LXDE/desktop.conf
+        state: present
