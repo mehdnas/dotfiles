@@ -52,3 +52,14 @@
         line: "window_manager=emacs"
         path: /etc/xdg/lxsession/LXDE/desktop.conf
         state: present
+
+    - name: Clone the dotfiles repo
+      git:
+        repo: 'https://github.com/mehdnas/dotfiles.git'
+        dest: /home/mehdi/.dotfiles
+
+    - name: Put dotfiles in home
+      command:
+        chdir: /home/mehdi/.dotfiles
+        cmd: stow .
+        creates: /home/mehdi/.*
