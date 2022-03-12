@@ -186,6 +186,18 @@
 
 * Window management
 
+** Logout
+
+#+begin_src emacs-lisp
+
+  (defun desktop-logout ()
+    (interactive)
+    (recentf-save-list)
+    (save-some-buffers)
+    (start-process-shell-command "logout" nil "lxsession-logout"))
+
+#+end_src
+
 ** EXWM
 
 #+begin_src emacs-lisp
@@ -206,6 +218,7 @@
 
     ;; Ctrl+Q will enable the next key to be sent directly
     (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+    (define-key exwm-mode-map [?s-Q] 'desktop-logout)
 
     ;; Set up global key bindings.  These always work, no matter the input state!
     ;; Keep in mind that changing this list after EXWM initializes has no effect.

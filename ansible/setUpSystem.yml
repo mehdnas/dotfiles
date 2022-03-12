@@ -58,6 +58,7 @@
         repo: 'https://github.com/mehdnas/dotfiles.git'
         dest: /home/mehdi/.dotfiles
         version: test-exwm
+      become_user: mehdi
 
     - name: Put dotfiles in home
       command:
