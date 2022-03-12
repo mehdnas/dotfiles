@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: "{{ test_host | default('localhost') }}"
   become: true
 
   pre_tasks:
@@ -17,5 +17,31 @@
 
     - name: Install the LightDM display manager
       dnf:
-        name: lightdm
+        name:
+          - lightdm
+          - lightdm-gtk-greeter
         state: present
+
+    - name: Install Emacs and packages for dotfiles management
+      dnf:
+        name:
+          - emacs
+          - git
+          - stow
+        state: present
+
+    - name: Boot into graphical target by default
+      file:
+        path: /etc/systemd/system/default.target
+        src: /usr/lib/systemd/system/graphical.target
+        state: link
+
+    - name: Disable the lxdm display manager
+      service:
+        name: lxdm
+        enabled: no
+
+    - name: Enable LightDM display manager
+      service:
+        name: lightdm
+        enabled: yes
