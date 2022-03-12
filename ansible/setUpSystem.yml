@@ -14,3 +14,8 @@
       dnf:
         name: "@LXDE Desktop"
         state: present
+
+    - name: Install the LightDM display manager
+      dnf:
+        name: lightdm
+        state: present
