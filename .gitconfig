@@ -1,0 +1,7 @@
+[user]
+	email = mehdinasefpu@gmail.com
+	name = Mehdi Nasef
+[init]
+	defaultBranch = main
+[core]
+	editor = vim
