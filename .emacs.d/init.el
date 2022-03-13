@@ -407,3 +407,13 @@
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
   :hook (yaml-mode . lsp))
+
+(use-package python-mode
+  :ensure t
+  :hook (python-mode . lsp)
+
+  :custom
+  (dap-python-debugger 'debugpy)
+
+  :config
+  (require 'dap-python))

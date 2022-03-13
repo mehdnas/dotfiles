@@ -13,3 +13,6 @@
 
 # Needed to install some of the language servers
   - nodejs
+
+# The language server for python (can't be installed by lsp-mode)
+  - python-language-server

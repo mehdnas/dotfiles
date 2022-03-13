@@ -673,3 +673,26 @@ Vars file for required packages to be installed by ansible
     - nodejs
 
 #+end_src
+
+*** Python
+
+#+begin_src emacs-lisp
+
+  (use-package python-mode
+    :ensure t
+    :hook (python-mode . lsp)
+
+    :custom
+    (dap-python-debugger 'debugpy)
+
+    :config
+    (require 'dap-python))
+
+#+end_src
+
+#+begin_src yaml
+
+  # The language server for python (can't be installed by lsp-mode)
+    - python-language-server
+
+#+end_src
