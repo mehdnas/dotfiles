@@ -581,9 +581,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
-** Languages
-
-*** Language Server Protocol
+** Language Server Protocol
 
 #+begin_src emacs-lisp
 
@@ -603,7 +601,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
-*** Debug Adapter
+** Debug Adapter
 
 #+begin_src emacs-lisp
 
@@ -617,6 +615,8 @@ Vars file for required packages to be installed by ansible
     (dap-node-setup))
 
 #+end_src
+
+** Languages
 
 *** YAML
 
