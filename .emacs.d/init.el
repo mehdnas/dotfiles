@@ -73,6 +73,17 @@
 
   (exwm-enable))
 
+(use-package ace-window
+  :bind (("M-o" . ace-window))
+
+  :custom
+  (aw-scope 'frame)
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-minibuffer-flag t)
+
+  :config
+  (ace-window-display-mode 1))
+
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)        ; Disable visible scrollbar
