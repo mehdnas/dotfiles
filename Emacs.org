@@ -33,7 +33,6 @@ Vars file for required packages to be installed by ansible
   - emacs_required_packages:
 #+end_src
 
-
 * Desktop environment
 
 ** Logout
@@ -122,6 +121,19 @@ Vars file for required packages to be installed by ansible
 
     :config
     (ace-window-display-mode 1))
+
+#+end_src
+
+** Window history (winner-mode)
+
+#+begin_src emacs-lisp
+
+  (use-package winner
+    :after evil
+    :config
+    (winner-mode)
+    (define-key evil-window-map "u" 'winner-undo)
+    (define-key evil-window-map "U" 'winner-redo))
 
 #+end_src
 
