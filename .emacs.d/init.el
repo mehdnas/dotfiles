@@ -32,7 +32,9 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (use-package doom-themes
-  :init (load-theme 'doom-palenight t))
+  :init
+  (load-theme 'doom-palenight t)
+  (doom-themes-visual-bell-config))
 
 (use-package all-the-icons)
 
@@ -40,12 +42,11 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(use-package which-key
-  :defer 0
-  :diminish which-key-mode
-  :config
-  (which-key-mode)
-  (setq which-key-idle-delay 1))
+(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
+(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+
+(setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
 
 (use-package ivy
   :diminish
@@ -121,6 +122,12 @@
   :config
   (evil-collection-init))
 
+(use-package which-key
+  :diminish which-key-mode
+  :config
+  (which-key-mode)
+  (setq which-key-idle-delay 0.5))
+
 (defun desktop-logout ()
   (interactive)
   (recentf-save-list)
@@ -143,7 +150,7 @@
 
   ;; Ctrl+Q will enable the next key to be sent directly
   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-  (define-key exwm-mode-map [?s-Q] 'desktop-logout)
+  ;;(define-key exwm-mode-map [?s-Q] 'desktop-logout)
 
   ;; Set up global key bindings.  These always work, no matter the input state!
   ;; Keep in mind that changing this list after EXWM initializes has no effect.
@@ -184,3 +191,30 @@
   :config
   (setq term-prompt-regexp "^\[[^$]*\]$ *")
   (setq vterm-max-scrollback 10000))
+
+(setq global-auto-revert-none-file-buffers t)
+
+(global-auto-revert-mode 1)
+
+(use-package paren
+  :config
+  (set-face-attribute 'show-paren-match-expression nil :background "#363e4a")
+  (show-paren-mode 1))
+
+(use-package smartparens
+  :hook (prog-mode . smartparens-mode))
+
+(setq-default tab-width 3)
+(setq-default evil-shift-width tab-width)
+
+(setq-default indent-tabs-mode nil)
+
+(use-package evil-nerd-commenter
+  :bind ("M-," . evilnc-comment-or-uncomment-lines))
+
+(use-package ws-butler
+  :hook ((text-mode . ws-butler-mode)
+         (prog-mode . ws-butler-mode)))
+
+(use-package origami
+  :hook (yaml-mode . origami-mode))
