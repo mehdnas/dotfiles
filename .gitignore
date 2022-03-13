@@ -1,6 +1,7 @@
 # .emacs.d files
 .emacs.d/elpa
 .emacs.d/auto-save-list/
+.emacs.d/projectile-bookmarks.eld
 
 # Emacs generated files
 *~
