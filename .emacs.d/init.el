@@ -384,3 +384,7 @@
   (dap-tooltip-mode 1)
   (require 'dap-node)
   (dap-node-setup))
+
+(use-package yaml-mode
+  :mode "\\.ya?ml\\'"
+  :hook (yaml-mode . lsp))

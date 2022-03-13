@@ -553,7 +553,7 @@ Vars file for required packages to be installed by ansible
 #+begin_src emacs-lisp
 
   (use-package magit
-    :bind ("C-M-;" . magit-status)
+    :bind ("C-M-," . magit-status)
     :commands (magit-status magit-get-current-branch)
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -615,5 +615,22 @@ Vars file for required packages to be installed by ansible
     (dap-tooltip-mode 1)
     (require 'dap-node)
     (dap-node-setup))
+
+#+end_src
+
+*** YAML
+
+#+begin_src emacs-lisp
+
+  (use-package yaml-mode
+    :mode "\\.ya?ml\\'"
+    :hook (yaml-mode . lsp))
+
+#+end_src
+
+#+begin_src yaml
+
+  # Needed to install some of the language servers
+    - nodejs
 
 #+end_src

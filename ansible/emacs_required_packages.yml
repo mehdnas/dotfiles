@@ -10,3 +10,6 @@
   # - mpv-mpris # needs the rpm fusion repos
   - feh
   - zathura
+
+# Needed to install some of the language servers
+  - nodejs
