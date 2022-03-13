@@ -121,6 +121,12 @@
   :config
   (evil-collection-init))
 
+(defun desktop-logout ()
+  (interactive)
+  (recentf-save-list)
+  (save-some-buffers)
+  (start-process-shell-command "logout" nil "lxsession-logout"))
+
 (use-package exwm
   :config
   ;; These keys should always pass through to Emacs
@@ -137,6 +143,7 @@
 
   ;; Ctrl+Q will enable the next key to be sent directly
   (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+  (define-key exwm-mode-map [?s-Q] 'desktop-logout)
 
   ;; Set up global key bindings.  These always work, no matter the input state!
   ;; Keep in mind that changing this list after EXWM initializes has no effect.
@@ -171,3 +178,9 @@
   (exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
 
   (exwm-enable))
+
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^\[[^$]*\]$ *")
+  (setq vterm-max-scrollback 10000))

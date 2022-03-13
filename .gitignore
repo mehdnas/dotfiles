@@ -1,3 +1,7 @@
 # .emacs.d files
 .emacs.d/elpa
 .emacs.d/auto-save-list/
+
+# Emacs generated files
+*~
+*#

@@ -1,6 +1,7 @@
 
 #+title: My Emacs Configuration
 #+PROPERTY: header-args:emacs-lisp :tangle ./.emacs.d/init.el :mkdirp yes
+#+PROPERTY: header-args:yaml :tangle ./ansible/emacs_required_packages.yml :mkdirp yes
 
 * Package System Setup
 
@@ -24,6 +25,13 @@
    (require 'use-package)
    (setq use-package-always-ensure t)
 
+#+end_src
+
+Vars file for required packages to be installed by ansible
+
+#+begin_src yaml
+  ---
+  - emacs_required_packages:
 #+end_src
 
 * UI
@@ -255,3 +263,21 @@
 
 #+end_src
 
+* Terminal
+
+#+begin_src emacs-lisp
+
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq term-prompt-regexp "^\[[^$]*\]$ *")
+    (setq vterm-max-scrollback 10000))
+
+#+end_src
+
+#+begin_src yaml
+  # Packages required by vterm
+    - cmake
+    - libtool
+    - gcc
+#+end_src

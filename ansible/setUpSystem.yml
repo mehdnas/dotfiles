@@ -1,5 +1,9 @@
+---
 - hosts: "{{ test_host | default('localhost') }}"
   become: true
+
+  vars_files:
+    - emacs_required_packages.yml
 
   pre_tasks:
 
@@ -26,8 +30,12 @@
       dnf:
         name:
           - emacs
-          - git
           - stow
+        state: present
+
+    - name: Install Packages Required by Emacs Packages
+      dnf:
+        name: "{{ emacs_required_packages }}"
         state: present
 
     - name: Boot into graphical target by default
@@ -52,12 +60,6 @@
         line: "window_manager=emacs"
         path: /etc/xdg/lxsession/LXDE/desktop.conf
         state: present
-
-    - name: Clone the dotfiles repo
-      git:
-        repo: 'git@github.com:mehdnas/dotfiles.git'
-        dest: /home/mehdi/.dotfiles
-      become_user: mehdi
 
     - name: Put dotfiles in home
       command:

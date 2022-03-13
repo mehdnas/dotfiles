@@ -1,0 +1,7 @@
+---
+- emacs_required_packages:
+
+# Packages required by vterm
+  - cmake
+  - libtool
+  - gcc
