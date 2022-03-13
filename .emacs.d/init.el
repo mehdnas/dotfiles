@@ -344,7 +344,7 @@
   :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
 
 (use-package magit
-  :bind ("C-M-;" . magit-status)
+  :bind ("C-M-," . magit-status)
   :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -384,6 +384,25 @@
   (dap-tooltip-mode 1)
   (require 'dap-node)
   (dap-node-setup))
+
+(use-package flycheck
+  :defer t
+  :hook (lsp-mode . flycheck-mode))
+
+(use-package yasnippet
+  :hook (prog-mode . yas-minor-mode)
+  :config
+  (yas-reload-all))
+
+(use-package corfu
+  :bind (:map corfu-map
+         ("C-j" . corfu-next)
+         ("C-k" . corfu-previous)
+         ("C-f" . corfu-insert))
+  :custom
+  (corfu-cycle t)
+  :config
+  (corfu-global-mode))
 
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
