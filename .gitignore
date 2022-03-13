@@ -5,7 +5,9 @@
 # Emacs generated files
 *~
 *#
+.#*
 
 # Configuration files I don't check into version control
 .config/dconf/
 .config/lxterminal/
+.config/qutebrowser/
