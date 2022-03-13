@@ -3,6 +3,7 @@
   become: true
 
   vars_files:
+    - vars.yml
     - emacs_required_packages.yml
     - mehdi_packages.yml
 

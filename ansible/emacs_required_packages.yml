@@ -5,3 +5,8 @@
   - cmake
   - libtool
   - gcc
+
+# Packages for opning files from emacs
+  # - mpv-mpris # needs the rpm fusion repos
+  - feh
+  - zathura
