@@ -4,6 +4,7 @@
 
   vars_files:
     - emacs_required_packages.yml
+    - mehdi_packages.yml
 
   pre_tasks:
 
@@ -13,6 +14,11 @@
         state: latest
 
   tasks:
+
+    - name: Install mehdi's packages
+      dnf:
+        name: "{{ mehdi_packages }}"
+        state: present
 
     - name: Install the LXDE desktop
       dnf:
