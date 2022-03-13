@@ -80,13 +80,22 @@
   :init
   (ivy-rich-mode 1))
 
-(use-package ivy-prescient
+(use-package ivy-hydra
+  :defer t
+  :after hydra)
+
+(use-package prescient
   :after counsel
+  :config
+  (prescient-persist-mode 1))
+
+(use-package ivy-prescient
+  :after prescient
   :custom
   (ivy-prescient-enable-filtering nil)
   :config
   ;; Uncomment the following line to have sorting remembered across sessions!
-  ;(prescient-persist-mode 1)
+  ;;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
 (use-package helpful
@@ -127,6 +136,9 @@
   :config
   (which-key-mode)
   (setq which-key-idle-delay 0.5))
+
+(use-package hydra
+  :defer 1)
 
 (defun desktop-logout ()
   (interactive)

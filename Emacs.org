@@ -34,6 +34,7 @@ Vars file for required packages to be installed by ansible
   - emacs_required_packages:
 #+end_src
 
+
 * UI
 
 ** Appearance
@@ -135,19 +136,28 @@ Vars file for required packages to be installed by ansible
     :init
     (ivy-rich-mode 1))
 
+  (use-package ivy-hydra
+    :defer t
+    :after hydra)
+
 #+end_src
 
 ** Candidate sorting
 
 #+begin_src emacs-lisp
 
-  (use-package ivy-prescient
+  (use-package prescient
     :after counsel
+    :config
+    (prescient-persist-mode 1))
+
+  (use-package ivy-prescient
+    :after prescient
     :custom
     (ivy-prescient-enable-filtering nil)
     :config
     ;; Uncomment the following line to have sorting remembered across sessions!
-    ;(prescient-persist-mode 1)
+    ;;(prescient-persist-mode 1)
     (ivy-prescient-mode 1))
 
 #+end_src
@@ -208,6 +218,15 @@ Vars file for required packages to be installed by ansible
     :config
     (which-key-mode)
     (setq which-key-idle-delay 0.5))
+
+#+end_src
+
+** Hydra
+
+#+begin_src emacs-lisp
+
+  (use-package hydra
+    :defer 1)
 
 #+end_src
 
