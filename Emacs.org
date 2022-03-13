@@ -172,6 +172,16 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Scaling / Zooming
+
+#+begin_src emacs-lisp
+
+  (use-package default-text-scale
+    :defer 1
+    :config
+    (default-text-scale-mode))
+
+#+end_src
 
 ** Ivy and Counsel
 

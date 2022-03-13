@@ -18,7 +18,6 @@
 
 (defun mn/desktop-logout ()
   (interactive)
-  (recentf-save-list)
   (save-some-buffers)
   (start-process-shell-command "logout" nil "lxsession-logout"))
 
@@ -105,6 +104,11 @@
 
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
+
+(use-package default-text-scale
+  :defer 1
+  :config
+  (default-text-scale-mode))
 
 (use-package ivy
   :diminish
