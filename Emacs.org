@@ -693,6 +693,7 @@ Vars file for required packages to be installed by ansible
 #+begin_src yaml
 
   # The language server for python (can't be installed by lsp-mode)
-    - python-language-server
+    - python-lsp-server
 
 #+end_src
+
