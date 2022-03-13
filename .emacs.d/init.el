@@ -214,7 +214,8 @@
   (show-paren-mode 1))
 
 (use-package smartparens
-  :hook (prog-mode . smartparens-mode))
+  :hook ((prog-mode . smartparens-mode)
+         (text-mode . smartparens-mode)))
 
 (setq-default tab-width 3)
 (setq-default evil-shift-width tab-width)
@@ -230,3 +231,6 @@
 
 (use-package origami
   :hook (yaml-mode . origami-mode))
+
+(use-package avy
+  :commands (avy-goto-char avy-goto-word-0 avy-goto-line))

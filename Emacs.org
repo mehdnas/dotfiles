@@ -343,7 +343,8 @@ Vars file for required packages to be installed by ansible
     (show-paren-mode 1))
 
   (use-package smartparens
-    :hook (prog-mode . smartparens-mode))
+    :hook ((prog-mode . smartparens-mode)
+           (text-mode . smartparens-mode)))
 
 #+end_src
 
@@ -383,5 +384,14 @@ Vars file for required packages to be installed by ansible
 
   (use-package origami
     :hook (yaml-mode . origami-mode))
+
+#+end_src
+
+** Jumping (Avy)
+
+#+begin_src emacs-lisp
+
+  (use-package avy
+    :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
 
 #+end_src
