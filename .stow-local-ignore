@@ -1,5 +1,6 @@
 \.git
+\.gitignore
 ansible
 LICENSE
 README.md
-m/*.org/
+^/.*\.org

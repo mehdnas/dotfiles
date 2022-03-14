@@ -467,7 +467,7 @@ Vars file for required packages to be installed by ansible
   # Packages for opning files from emacs
     # - mpv-mpris # needs the rpm fusion repos
     - feh
-    - zathura
+    - zathura-pdf-mupdf
 
 #+end_src
 
@@ -545,6 +545,7 @@ Vars file for required packages to be installed by ansible
     :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
 
 #+end_src
+
 
 * Development
 
@@ -639,7 +640,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
-*** Completions (corfu)
+*** Completions
 
 #+begin_src emacs-lisp
 
@@ -652,6 +653,25 @@ Vars file for required packages to be installed by ansible
   (corfu-cycle t)
   :config
   (corfu-global-mode))
+
+#+end_src
+
+#+begin_src emacs-lisp
+
+  (use-package company
+    :after lsp-mode
+    :hook (lsp-mode . company-mode)
+
+    :bind (:map company-active-map
+                ("<tab>" . company-complete-selection))
+          (:map lsp-mode-map
+                ("<tab>" . company-indent-or-complete-common))
+    :custom
+    (company-minimum-prefix-length 3)
+    (company-idle-delay 0.2))
+
+  (use-package company-box
+    :hook (company-mode . company-box-mode))
 
 #+end_src
 
@@ -697,3 +717,22 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+*** Ada
+
+#+begin_src emacs-lisp
+
+  (use-package ada-mode
+    :ensure t
+    :hook (ada-mode . lsp))
+
+#+end_src
+
+*** Shell scripts
+
+#+begin_src emacs-lisp
+
+  (use-package sh-mode
+    :ensure nil
+    :hook (sh-mode . lsp))
+
+#+end_src

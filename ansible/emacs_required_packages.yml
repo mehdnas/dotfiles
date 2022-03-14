@@ -9,7 +9,7 @@
 # Packages for opning files from emacs
   # - mpv-mpris # needs the rpm fusion repos
   - feh
-  - zathura
+  - zathura-pdf-mupdf
 
 # Needed to install some of the language servers
   - nodejs

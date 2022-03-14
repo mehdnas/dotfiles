@@ -404,6 +404,21 @@
   :config
   (corfu-global-mode))
 
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+
+  :bind (:map company-active-map
+              ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+              ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 3)
+  (company-idle-delay 0.2))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
   :hook (yaml-mode . lsp))
@@ -417,3 +432,11 @@
 
   :config
   (require 'dap-python))
+
+(use-package ada-mode
+  :ensure t
+  :hook (ada-mode . lsp))
+
+(use-package sh-mode
+  :ensure nil
+  :hook (sh-mode . lsp))
