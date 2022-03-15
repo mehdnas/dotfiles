@@ -736,3 +736,20 @@ Vars file for required packages to be installed by ansible
     :hook (sh-mode . lsp))
 
 #+end_src
+
+*** Java
+
+#+begin_src emacs-lisp
+
+  (use-package lsp-java
+    :ensure t
+    :hook (java-mode . lsp))
+
+#+end_src
+
+#+begin_src yaml
+
+  # Used to build java projects
+    - maven
+
+#+end_src

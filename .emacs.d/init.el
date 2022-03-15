@@ -440,3 +440,7 @@
 (use-package sh-mode
   :ensure nil
   :hook (sh-mode . lsp))
+
+(use-package lsp-java
+  :ensure t
+  :hook (java-mode . lsp))

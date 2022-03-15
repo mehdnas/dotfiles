@@ -6,6 +6,8 @@
 .emacs.d/.lsp-session-v1
 .emacs.d/var/
 .emacs.d/transient/
+.emacs.d/eclipse.jdt.ls/
+.emacs.d/workspace/
 
 # Emacs generated files
 *~
