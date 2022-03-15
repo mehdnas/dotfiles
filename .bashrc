@@ -41,6 +41,12 @@ then
     LD_LIBRARY_PATH="$HOME/.lib/libadalang:$LD_LIBRARY_PATH"
 fi
 
+# libiconv
+if ! [[ "$LD_LIBRARY_PATH" =~ "/usr/local/libiconv/lib" ]]
+then
+    LD_LIBRARY_PATH="/usr/local/libiconv/lib:$LD_LIBRARY_PATH"
+fi
+
 export LD_LIBRARY_PATH
 export PATH
 export ANSIBLE_NOCOWS=1
@@ -61,3 +67,5 @@ unset rc
 
 # Password generator
 alias pswdgen="dd if=/dev/urandom bs=1 count=8 2>/dev/null | base64 -w 0 | rev | cut -b 2- | rev"
+
+source ~/.dotfiles/setAdaProjectFilesForAdaModeBuild.sh

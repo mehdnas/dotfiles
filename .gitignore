@@ -5,6 +5,7 @@
 .emacs.d/.cache/
 .emacs.d/.lsp-session-v1
 .emacs.d/var/
+.emacs.d/transient/
 
 # Emacs generated files
 *~
