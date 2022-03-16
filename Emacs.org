@@ -755,3 +755,23 @@ Vars file for required packages to be installed by ansible
     - maven
 
 #+end_src
+
+*** XML
+
+#+begin_src emacs-lisp
+
+  (use-package nxml-mode
+    :ensure nil
+    :hook (nxml-mode . lsp))
+
+#+end_src
+
+* Misc
+
+** Logging commands
+
+#+begin_src emacs-lisp
+
+  (use-package command-log-mode)
+
+#+end_src

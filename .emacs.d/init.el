@@ -310,7 +310,8 @@
           (list (openwith-make-extension-regexp
                 '("pdf"))
                 "zathura"
-                '(file)))))
+                '(file))))
+  (openwith-mode 1))
 
 (setq global-auto-revert-none-file-buffers t)
 
@@ -361,6 +362,9 @@
   :bind (("C-M-p" . counsel-projectile-find-file))
   :config
   (counsel-projectile-mode))
+
+(use-package treemacs
+  :after lsp-mode)
 
 (use-package lsp-mode
   :commands lsp
@@ -444,3 +448,9 @@
 (use-package lsp-java
   :ensure t
   :hook (java-mode . lsp))
+
+(use-package nxml-mode
+  :ensure nil
+  :hook (nxml-mode . lsp))
+
+(use-package command-log-mode)
