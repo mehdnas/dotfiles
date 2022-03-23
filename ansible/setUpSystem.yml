@@ -5,7 +5,7 @@
   vars_files:
     - vars.yml
     - emacs_required_packages.yml
-    - mehdi_packages.yml
+    - exwm_user_packages.yml
 
   pre_tasks:
 
@@ -16,9 +16,9 @@
 
   tasks:
 
-    - name: Install mehdi's packages
+    - name: Install exwm_user's packages
       dnf:
-        name: "{{ mehdi_packages }}"
+        name: "{{ exwm_user_packages }}"
         state: present
 
     - name: Install the LXDE desktop
@@ -61,15 +61,46 @@
         name: lightdm
         enabled: yes
 
-    - name: Use Emacs as the window manager
-      lineinfile:
-        regexp: "^window_manager="
-        line: "window_manager=emacs"
-        path: /etc/xdg/lxsession/LXDE/desktop.conf
-        state: present
+    # - name: Use Emacs as the window manager
+    #   lineinfile:
+    #     regexp: "^window_manager="
+    #     line: "window_manager=emacs"
+    #     path: /etc/xdg/lxsession/LXDE/desktop.conf
+    #     state: present
+
+    - name: Create exwm user
+      user:
+        name: "{{ exwm_user_name }}"
+        create_home: yes
+        append: true
+        groups: wheel
+        update_password: on_create
+        password: "{{ exwm_user_password | password_hash('sha512') }}"
+
+    - name: Create dotfiles dirs so that they dont get created
+      file:
+        path: "/home/{{ exwm_user_name }}/{{ item }}"
+        state: directory
+        owner: "{{ exwm_user_name }}"
+      with_items:
+        - ".emacs.d"
+        - ".config"
+
+    - name: Clone the dotfiles repo
+      git:
+        repo: 'https://github.com/mehdnas/dotfiles.git'
+        dest: "/home/{{ exwm_user_name }}/.dotfiles"
+      become_user: "{{ exwm_user_name }}"
+
+    - name: Ensure default bash dotfiles are removed
+      file:
+        path: "/home/{{ exwm_user_name }}/{{ item }}"
+        state: absent
+      with_items:
+        - ".bash_profile"
+        - ".bashrc"
 
     - name: Put dotfiles in home
       command:
-        chdir: /home/mehdi/.dotfiles
+        chdir: "/home/{{ exwm_user_name }}/.dotfiles"
         cmd: stow .
-        creates: /home/mehdi/.emacs.d

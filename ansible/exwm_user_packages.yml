@@ -1,5 +1,5 @@
 ---
-- mehdi_packages:
+- exwm_user_packages:
   - qutebrowser
   - python3
   - python3-pip
