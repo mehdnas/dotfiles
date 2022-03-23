@@ -21,3 +21,6 @@
 .config/qutebrowser/
 .config/pulse/
 .config/alire/
+
+# Vagrant files
+.vagrant/
