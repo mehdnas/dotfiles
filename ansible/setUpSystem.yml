@@ -92,15 +92,18 @@
         dest: "/home/{{ exwm_user_name }}/.dotfiles"
       become_user: "{{ exwm_user_name }}"
 
-    - name: Ensure default bash dotfiles are removed
+    - name: Ensure default dotfiles are removed
       file:
         path: "/home/{{ exwm_user_name }}/{{ item }}"
         state: absent
+      become_user: "{{ exwm_user_name }}"
       with_items:
         - ".bash_profile"
         - ".bashrc"
+        - ".emacs"
 
-    - name: Put dotfiles in home
+    - name: link dotfiles into home
       command:
         chdir: "/home/{{ exwm_user_name }}/.dotfiles"
         cmd: stow .
+      become_user: "{{ exwm_user_name }}"

@@ -3,4 +3,6 @@
 ansible
 LICENSE
 README.md
+setAdaProjectFilesForAdaModeBuild.sh
+Vagrantfile
 ^/.*\.org
