@@ -16,3 +16,6 @@
 .config/lxterminal/
 .config/qutebrowser/
 .config/pulse/
+
+# Vagrant files
+.vagrant/
