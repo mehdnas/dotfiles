@@ -9,10 +9,13 @@
 # Packages for opning files from emacs
   # - mpv-mpris # needs the rpm fusion repos
   - feh
-  - zathura
+  - zathura-pdf-mupdf
 
 # Needed to install some of the language servers
   - nodejs
 
 # The language server for python (can't be installed by lsp-mode)
-  - python-language-server
+  - python-lsp-server
+
+# Used to build java projects
+  - maven

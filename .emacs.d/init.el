@@ -310,7 +310,8 @@
           (list (openwith-make-extension-regexp
                 '("pdf"))
                 "zathura"
-                '(file)))))
+                '(file))))
+  (openwith-mode 1))
 
 (setq global-auto-revert-none-file-buffers t)
 
@@ -362,6 +363,9 @@
   :config
   (counsel-projectile-mode))
 
+(use-package treemacs
+  :after lsp-mode)
+
 (use-package lsp-mode
   :commands lsp
   :bind (:map lsp-mode-map
@@ -404,6 +408,21 @@
   :config
   (corfu-global-mode))
 
+(use-package company
+  :after lsp-mode
+  :hook (lsp-mode . company-mode)
+
+  :bind (:map company-active-map
+              ("<tab>" . company-complete-selection))
+        (:map lsp-mode-map
+              ("<tab>" . company-indent-or-complete-common))
+  :custom
+  (company-minimum-prefix-length 3)
+  (company-idle-delay 0.2))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
+
 (use-package yaml-mode
   :mode "\\.ya?ml\\'"
   :hook (yaml-mode . lsp))
@@ -417,3 +436,21 @@
 
   :config
   (require 'dap-python))
+
+(use-package ada-mode
+  :ensure t
+  :hook (ada-mode . lsp))
+
+(use-package sh-mode
+  :ensure nil
+  :hook (sh-mode . lsp))
+
+(use-package lsp-java
+  :ensure t
+  :hook (java-mode . lsp))
+
+(use-package nxml-mode
+  :ensure nil
+  :hook (nxml-mode . lsp))
+
+(use-package command-log-mode)
