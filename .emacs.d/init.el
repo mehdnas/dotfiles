@@ -28,6 +28,51 @@
         exwm-workspace-warp-cursor t
         exwm-workspace-number 9)
   :config
+  ;; These keys should always pass through to Emacs
+  (setq exwm-input-prefix-keys
+        '(?\C-x
+          ?\C-h
+          ?\M-x
+          ?\M-`
+          ?\M-&
+          ?\M-:
+          ?\C-\M-n  ;; Next workspace
+          ?\C-\     ;; Ctrl+Space
+          ?\C-\;))
+
+  (setq exwm-input-global-keys
+        `(
+          ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+          ([?\s-r] . exwm-reset)
+
+          ;; Move between windows
+          ([s-left] . windmove-left)
+          ([s-right] . windmove-right)
+          ([s-up] . windmove-up)
+          ([s-down] . windmove-down)
+
+          ;; Launch applications via shell command
+          ([?\s-&] . (lambda (command)
+                       (interactive (list (read-shell-command "$ ")))
+                       (start-process-shell-command command nil command)))
+
+          ;; Switch workspace
+          ([?\s-w] . exwm-workspace-switch)
+          ([?\s-'] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+
+          ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+
+  (exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
+
+
+  (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
   ;; Make class name the buffer name
   (add-hook 'exwm-update-class-hook
             (lambda ()
@@ -47,6 +92,16 @@
   :config
   (exwm-randr-enable)
   (setq exwm-randr-workspace-monitor-plist '(4 "eDP-1" 8 "HDMI-1")))
+
+(use-package desktop-environment
+  :after exwm
+  :config (desktop-environment-mode)
+  :custom
+  (desktop-environment-brightness-small-increment "2%+")
+  (desktop-environment-brightness-small-decrement "2%-")
+  (desktop-environment-brightness-normal-increment "5%+")
+  (desktop-environment-brightness-normal-decrement "5%-")
+  (desktop-environment-screenshot-command "flameshot gui"))
 
 (use-package ace-window
   :bind (("M-o" . ace-window))
@@ -195,12 +250,6 @@
 (use-package hydra
   :defer 1)
 
-(use-package vterm
-  :commands vterm
-  :config
-  (setq term-prompt-regexp "^\[[^$]*\]$ *")
-  (setq vterm-max-scrollback 10000))
-
 (use-package all-the-icons-dired)
 
   (use-package dired
@@ -324,6 +373,12 @@
   :commands (magit-status magit-get-current-branch)
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package vterm
+  :commands vterm
+  :config
+  (setq term-prompt-regexp "^\[[^$]*\]$ *")
+  (setq vterm-max-scrollback 10000))
 
 (use-package projectile
   :diminish projectile-mode

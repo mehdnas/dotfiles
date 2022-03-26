@@ -19,6 +19,7 @@ Global {
   fontcolor=#ffffff
   background=0
   backgroundfile=/usr/share/lxpanel/images/background.png
+  monitor=0
 }
 Plugin {
   type=space

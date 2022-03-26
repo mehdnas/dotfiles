@@ -56,6 +56,51 @@ Vars file for required packages to be installed by ansible
           exwm-workspace-warp-cursor t
           exwm-workspace-number 9)
     :config
+    ;; These keys should always pass through to Emacs
+    (setq exwm-input-prefix-keys
+          '(?\C-x
+            ?\C-h
+            ?\M-x
+            ?\M-`
+            ?\M-&
+            ?\M-:
+            ?\C-\M-n  ;; Next workspace
+            ?\C-\     ;; Ctrl+Space
+            ?\C-\;))
+
+    (setq exwm-input-global-keys
+          `(
+            ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+            ([?\s-r] . exwm-reset)
+
+            ;; Move between windows
+            ([s-left] . windmove-left)
+            ([s-right] . windmove-right)
+            ([s-up] . windmove-up)
+            ([s-down] . windmove-down)
+
+            ;; Launch applications via shell command
+            ([?\s-&] . (lambda (command)
+                         (interactive (list (read-shell-command "$ ")))
+                         (start-process-shell-command command nil command)))
+
+            ;; Switch workspace
+            ([?\s-w] . exwm-workspace-switch)
+            ([?\s-'] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
+
+            ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
+            ,@(mapcar (lambda (i)
+                        `(,(kbd (format "s-%d" i)) .
+                          (lambda ()
+                            (interactive)
+                            (exwm-workspace-switch-create ,i))))
+                      (number-sequence 0 9))))
+
+    (exwm-input-set-key (kbd "s-SPC") 'counsel-linux-app)
+
+
+    (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
     ;; Make class name the buffer name
     (add-hook 'exwm-update-class-hook
               (lambda ()
@@ -78,6 +123,28 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Desktop functionality
+
+#+begin_src emacs-lisp
+
+  (use-package desktop-environment
+    :after exwm
+    :config (desktop-environment-mode)
+    :custom
+    (desktop-environment-brightness-small-increment "2%+")
+    (desktop-environment-brightness-small-decrement "2%-")
+    (desktop-environment-brightness-normal-increment "5%+")
+    (desktop-environment-brightness-normal-decrement "5%-")
+    (desktop-environment-screenshot-command "flameshot gui"))
+
+#+end_src
+
+#+begin_src yaml
+
+  # used by desktop environment to change screen brightness
+    - brightnessctl
+
+#+end_src
 
 * Window management
 
@@ -317,24 +384,6 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
-* Terminal
-
-#+begin_src emacs-lisp
-
-  (use-package vterm
-    :commands vterm
-    :config
-    (setq term-prompt-regexp "^\[[^$]*\]$ *")
-    (setq vterm-max-scrollback 10000))
-
-#+end_src
-
-#+begin_src yaml
-  # Packages required by vterm
-    - cmake
-    - libtool
-    - gcc
-#+end_src
 
 * File browsing
 
@@ -534,6 +583,25 @@ Vars file for required packages to be installed by ansible
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
+#+end_src
+
+** Terminal
+
+#+begin_src emacs-lisp
+
+  (use-package vterm
+    :commands vterm
+    :config
+    (setq term-prompt-regexp "^\[[^$]*\]$ *")
+    (setq vterm-max-scrollback 10000))
+
+#+end_src
+
+#+begin_src yaml
+  # Packages required by vterm
+    - cmake
+    - libtool
+    - gcc
 #+end_src
 
 ** Projects

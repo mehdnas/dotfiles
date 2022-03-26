@@ -90,6 +90,7 @@
       git:
         repo: 'https://github.com/mehdnas/dotfiles.git'
         dest: "/home/{{ exwm_user_name }}/.dotfiles"
+        update: no
       become_user: "{{ exwm_user_name }}"
 
     - name: Ensure default dotfiles are removed

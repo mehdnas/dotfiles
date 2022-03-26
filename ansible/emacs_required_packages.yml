@@ -1,15 +1,18 @@
 ---
 - emacs_required_packages:
 
-# Packages required by vterm
-  - cmake
-  - libtool
-  - gcc
+# used by desktop environment to change screen brightness
+  - brightnessctl
 
 # Packages for opning files from emacs
   # - mpv-mpris # needs the rpm fusion repos
   - feh
   - zathura-pdf-mupdf
+
+# Packages required by vterm
+  - cmake
+  - libtool
+  - gcc
 
 # Needed to install some of the language servers
   - nodejs
