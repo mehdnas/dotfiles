@@ -58,7 +58,6 @@
 
           ;; Switch workspace
           ([?\s-w] . exwm-workspace-switch)
-          ([?\s-'] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
 
           ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
           ,@(mapcar (lambda (i)
@@ -104,7 +103,7 @@
   (desktop-environment-screenshot-command "flameshot gui"))
 
 (use-package ace-window
-  :bind (("M-o" . ace-window))
+  :bind (("s-'" . ace-window))
 
   :custom
   (aw-scope 'frame)

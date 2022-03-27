@@ -86,7 +86,6 @@ Vars file for required packages to be installed by ansible
 
             ;; Switch workspace
             ([?\s-w] . exwm-workspace-switch)
-            ([?\s-'] . (lambda () (interactive) (exwm-workspace-switch-create 0)))
 
             ;; 's-N': Switch to certain workspace with Super (Win) plus a number key (0 - 9)
             ,@(mapcar (lambda (i)
@@ -153,7 +152,7 @@ Vars file for required packages to be installed by ansible
 #+begin_src emacs-lisp
 
   (use-package ace-window
-    :bind (("M-o" . ace-window))
+    :bind (("s-'" . ace-window))
 
     :custom
     (aw-scope 'frame)
@@ -177,6 +176,7 @@ Vars file for required packages to be installed by ansible
     (define-key evil-window-map "U" 'winner-redo))
 
 #+end_src
+
 
 * UI
 
