@@ -42,9 +42,9 @@ then
 fi
 
 # libiconv
-if ! [[ "$LD_LIBRARY_PATH" =~ "/usr/local/libiconv/lib" ]]
+if ! [[ "$LD_LIBRARY_PATH" =~ "/usr/local/lib" ]]
 then
-    LD_LIBRARY_PATH="/usr/local/libiconv/lib:$LD_LIBRARY_PATH"
+    LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 fi
 
 export LD_LIBRARY_PATH

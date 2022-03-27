@@ -82,6 +82,7 @@
         path: "/home/{{ exwm_user_name }}/{{ item }}"
         state: directory
         owner: "{{ exwm_user_name }}"
+        group: "{{ exwm_user_name }}"
       with_items:
         - ".emacs.d"
         - ".config"
@@ -109,8 +110,39 @@
         - ".bashrc"
         - ".emacs"
 
-    - name: link dotfiles into home
+    - name: Link dotfiles into home
       command:
         chdir: "/home/{{ exwm_user_name }}/.dotfiles"
         cmd: stow .
       become_user: "{{ exwm_user_name }}"
+
+    - name: Ensure LVM2 is installed
+      dnf:
+        name: lvm2
+        state: present
+
+    - name: Make an LV for university files
+      lvol:
+        vg: "{{ default_fedora_server_vg }}"
+        lv: "{{ univ_lv_name }}"
+        size: "{{ univ_lv_size }}"
+        resizefs: yes
+
+    - name: Format the univ LV with a file system
+      filesystem:
+        fstype: "{{ univ_lv_fstype }}"
+        dev: "/dev/{{ default_fedora_server_vg }}/{{ univ_lv_name }}"
+
+    - name: Mount the univ LV on the Univ directory
+      mount:
+        path: "/home/{{ exwm_user_name }}/Univ"
+        src: "/dev/{{ default_fedora_server_vg }}/{{ univ_lv_name }}"
+        fstype: "{{ univ_lv_fstype }}"
+        state: mounted
+
+    - name: Make the exwm_user own the Univ directory
+      file:
+        path: "/home/{{ exwm_user_name }}/Univ"
+        owner: "{{ exwm_user_name }}"
+        group: "{{ exwm_user_name }}"
+        state: directory
