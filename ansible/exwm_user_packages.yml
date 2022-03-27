@@ -3,6 +3,7 @@
   - qutebrowser
   - python3
   - python3-pip
+  - "@virtualization"
 
   # Ada compiler and build system
   - gcc-gnat

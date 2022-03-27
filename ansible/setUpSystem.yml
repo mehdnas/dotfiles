@@ -93,7 +93,13 @@
         update: no
       become_user: "{{ exwm_user_name }}"
 
+    - name: check if default dotfiles are links
+      stat:
+        path: "/home/{{ exwm_user_name }}/.bashrc"
+      register: bashrc_info
+
     - name: Ensure default dotfiles are removed
+      when: bashrc_info.stat.islnk is defined and not bashrc_info.stat.islnk
       file:
         path: "/home/{{ exwm_user_name }}/{{ item }}"
         state: absent
