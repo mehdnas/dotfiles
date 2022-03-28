@@ -3,5 +3,5 @@
 - exwm_user_password: unsafePassword
 - default_fedora_server_vg: fedora_fedorapc
 - univ_lv_name: univ
-- univ_lv_size: 32G
+- univ_lv_size: 128G
 - univ_lv_fstype: ext4
