@@ -33,7 +33,7 @@
         '(?\C-x
           ?\C-h
           ?\M-x
-          ?\M-`
+          ?\M-o
           ?\M-&
           ?\M-:
           ?\C-\M-n  ;; Next workspace
@@ -103,7 +103,7 @@
   (desktop-environment-screenshot-command "flameshot gui"))
 
 (use-package ace-window
-  :bind (("s-'" . ace-window))
+  :bind (("M-o" . ace-window))
 
   :custom
   (aw-scope 'frame)
@@ -367,6 +367,40 @@
 (use-package avy
   :commands (avy-goto-char avy-goto-word-0 avy-goto-line))
 
+(setq-default fill-column 80)
+
+(defun mn/org-mode-setup ()
+  (org-indent-mode)
+  (variable-pitch-mode 1)
+  (setq evil-auto-indent nil))
+  ;; (diminish org-indent-mode))
+
+(defun mn/org-baseline-config ()
+  (setq
+   org-hide-emphasis-markers t
+   org-src-fontify-natively t
+   org-src-tab-acts-natively t
+   org-edit-src-content-indentation 2
+   org-hide-block-startup nil
+   org-src-preserve-indentation nil
+   org-startup-folded 'content
+   org-cycle-separator-lines 2)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+  (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup)
+
+  (org-babel-do-load-languages
+    'org-babel-load-languages
+    '((emacs-lisp . t))))
+
+(use-package org
+  :defer t
+  :hook (org-mode . mn/org-mode-setup)
+  :config (mn/org-baseline-config))
+
 (use-package magit
   :bind ("C-M-," . magit-status)
   :commands (magit-status magit-get-current-branch)
@@ -393,6 +427,7 @@
   (counsel-projectile-mode))
 
 (use-package treemacs
+  :bind ("C-c t" . treemacs-select-window)
   :after lsp-mode)
 
 (use-package lsp-mode

@@ -1,4 +1,5 @@
 #+title: My Emacs Configuration
+
 #+PROPERTY: header-args:emacs-lisp :tangle ./.emacs.d/init.el :mkdirp yes
 #+PROPERTY: header-args:yaml :tangle ./ansible/emacs_required_packages.yml :mkdirp yes
 
@@ -33,6 +34,7 @@ Vars file for required packages to be installed by ansible
   - emacs_required_packages:
 #+end_src
 
+
 * Desktop environment
 
 ** Logout
@@ -61,7 +63,7 @@ Vars file for required packages to be installed by ansible
           '(?\C-x
             ?\C-h
             ?\M-x
-            ?\M-`
+            ?\M-o
             ?\M-&
             ?\M-:
             ?\C-\M-n  ;; Next workspace
@@ -145,6 +147,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+
 * Window management
 
 ** Window selection (ace-window)
@@ -152,7 +155,7 @@ Vars file for required packages to be installed by ansible
 #+begin_src emacs-lisp
 
   (use-package ace-window
-    :bind (("s-'" . ace-window))
+    :bind (("M-o" . ace-window))
 
     :custom
     (aw-scope 'frame)
@@ -495,6 +498,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+
 * Editing configurations
 
 ** Auto-Revert changed files
@@ -570,6 +574,66 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Fill column
+
+#+begin_src emacs-lisp
+
+  (setq-default fill-column 80)
+
+#+end_src
+
+
+* Org mode
+
+** A function for the hook to setup org mode
+
+#+begin_src emacs-lisp
+
+  (defun mn/org-mode-setup ()
+    (org-indent-mode)
+    (variable-pitch-mode 1)
+    (setq evil-auto-indent nil))
+    ;; (diminish org-indent-mode))
+
+#+end_src
+
+** Baseline configuration for Org mode
+
+#+begin_src emacs-lisp
+
+  (defun mn/org-baseline-config ()
+    (setq
+     org-hide-emphasis-markers t
+     org-src-fontify-natively t
+     org-src-tab-acts-natively t
+     org-edit-src-content-indentation 2
+     org-hide-block-startup nil
+     org-src-preserve-indentation nil
+     org-startup-folded 'content
+     org-cycle-separator-lines 2)
+
+    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-j") 'org-next-visible-heading)
+    (evil-define-key '(normal insert visual) org-mode-map (kbd "C-k") 'org-previous-visible-heading)
+
+    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-j") 'org-metadown)
+    (evil-define-key '(normal insert visual) org-mode-map (kbd "M-k") 'org-metaup)
+
+    (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((emacs-lisp . t))))
+#+end_src
+
+** Final configuration for org mode
+
+#+begin_src emacs-lisp
+
+  (use-package org
+    :defer t
+    :hook (org-mode . mn/org-mode-setup)
+    :config (mn/org-baseline-config))
+
+#+end_src
+
 
 * Development
 
@@ -622,6 +686,7 @@ Vars file for required packages to be installed by ansible
     (counsel-projectile-mode))
 
   (use-package treemacs
+    :bind ("C-c t" . treemacs-select-window)
     :after lsp-mode)
 
 #+end_src
@@ -807,6 +872,7 @@ Vars file for required packages to be installed by ansible
     :hook (nxml-mode . lsp))
 
 #+end_src
+
 
 * Misc
 
