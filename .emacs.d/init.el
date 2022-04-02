@@ -375,6 +375,7 @@
 (defun mn/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
+  (visual-line-mode 1)
   (setq evil-auto-indent nil))
   ;; (diminish org-indent-mode))
 
