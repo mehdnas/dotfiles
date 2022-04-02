@@ -37,6 +37,7 @@ Vars file for required packages to be installed by ansible
 
 * Desktop environment
 
+
 ** Logout
 
 #+begin_src emacs-lisp
@@ -45,6 +46,15 @@ Vars file for required packages to be installed by ansible
     (interactive)
     (save-some-buffers)
     (start-process-shell-command "logout" nil "lxsession-logout"))
+
+#+end_src
+
+** Composite manager
+
+#+begin_src emacs-lisp
+
+  (defun mn/run-composite-manager ()
+    (async-shell-command "compton"))
 
 #+end_src
 
@@ -111,7 +121,7 @@ Vars file for required packages to be installed by ansible
                 (pcase exwm-class-name
                   ;;("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
                   ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
-
+    (mn/run-composite-manager)
     (exwm-enable))
 
   ;; Enable exwm-randr before exwm-init gets called
@@ -229,10 +239,11 @@ Vars file for required packages to be installed by ansible
 #+end_src
 
 *** Frame transparency
+
 #+begin_src emacs-lisp
 
-  (set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-  (add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+  (set-frame-parameter (selected-frame) 'alpha '(92 . 92))
+  (add-to-list 'default-frame-alist '(alpha . (92 . 92)))
 
 #+end_src
 

@@ -21,6 +21,9 @@
   (save-some-buffers)
   (start-process-shell-command "logout" nil "lxsession-logout"))
 
+(defun mn/run-composite-manager ()
+  (async-shell-command "compton"))
+
 (use-package exwm
   :init
   (setq mouse-autoselect-window nil
@@ -81,7 +84,7 @@
               (pcase exwm-class-name
                 ;;("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
                 ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
-
+  (mn/run-composite-manager)
   (exwm-enable))
 
 ;; Enable exwm-randr before exwm-init gets called
@@ -146,8 +149,8 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(set-frame-parameter (selected-frame) 'alpha '(90 . 90))
-(add-to-list 'default-frame-alist '(alpha . (90 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(92 . 92))
+(add-to-list 'default-frame-alist '(alpha . (92 . 92)))
 
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
