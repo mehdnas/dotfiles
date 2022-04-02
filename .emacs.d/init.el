@@ -399,10 +399,16 @@
     'org-babel-load-languages
     '((emacs-lisp . t))))
 
+(defun mn/org-latex-config ()
+  (add-to-list 'org-latex-packages-alist
+               '("AUTO" "babel" t ("pdflatex"))))
+
 (use-package org
   :defer t
   :hook (org-mode . mn/org-mode-setup)
-  :config (mn/org-baseline-config))
+  :config
+  (mn/org-baseline-config)
+  (mn/org-latex-config))
 
 (use-package magit
   :bind ("C-M-," . magit-status)

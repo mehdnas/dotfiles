@@ -641,6 +641,16 @@ Vars file for required packages to be installed by ansible
       '((emacs-lisp . t))))
 #+end_src
 
+** Org-Latex
+
+#+begin_src emacs-lisp
+
+  (defun mn/org-latex-config ()
+    (add-to-list 'org-latex-packages-alist
+                 '("AUTO" "babel" t ("pdflatex"))))
+
+#+end_src
+
 ** Final configuration for org mode
 
 #+begin_src emacs-lisp
@@ -648,7 +658,9 @@ Vars file for required packages to be installed by ansible
   (use-package org
     :defer t
     :hook (org-mode . mn/org-mode-setup)
-    :config (mn/org-baseline-config))
+    :config
+    (mn/org-baseline-config)
+    (mn/org-latex-config))
 
 #+end_src
 
