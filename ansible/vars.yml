@@ -5,3 +5,6 @@
 - univ_lv_name: univ
 - univ_lv_size: 128G
 - univ_lv_fstype: ext4
+
+- root_lv_name: root
+- root_lv_size: 32G

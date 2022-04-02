@@ -9,6 +9,13 @@
 
   pre_tasks:
 
+    - name: Resize the default root LV
+      lvol:
+        vg: "{{ default_fedora_server_vg }}"
+        lv: "{{ root_lv_name }}"
+        size: "{{ root_lv_size }}"
+        resizefs: yes
+
     - name: Upgrade all packages
       dnf:
         name: "*"

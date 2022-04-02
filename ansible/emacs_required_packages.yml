@@ -1,6 +1,9 @@
 ---
 - emacs_required_packages:
 
+# The composite manager dnf package
+  - compton
+
 # used by desktop environment to change screen brightness
   - brightnessctl
 

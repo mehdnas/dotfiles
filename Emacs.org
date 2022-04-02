@@ -58,6 +58,13 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+#+begin_src yaml
+
+  # The composite manager dnf package
+    - compton
+
+#+end_src
+
 ** EXWM
 
 #+begin_src emacs-lisp
