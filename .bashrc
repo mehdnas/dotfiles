@@ -29,10 +29,10 @@ then
     PATH="$HOME/opt/GNAT/2021/bin:$PATH"
 fi
 
-# Knime's path
-if ! [[ "$PATH" =~ "$HOME/.bin/knime_4.5.1:" ]]
+# Knime's path knime_4.5.2
+if ! [[ "$PATH" =~ "$HOME/.bin/knime_4.5.2:" ]]
 then
-    PATH="$HOME/.bin/knime_4.5.1:$PATH"
+    PATH="$HOME/.bin/knime_4.5.2:$PATH"
 fi
 
 # Libadalang

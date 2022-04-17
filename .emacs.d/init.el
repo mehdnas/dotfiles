@@ -93,7 +93,17 @@
   :after (exwm)
   :config
   (exwm-randr-enable)
-  (setq exwm-randr-workspace-monitor-plist '(4 "eDP-1" 8 "HDMI-1")))
+  (setq exwm-randr-workspace-monitor-plist
+        '(1 "eDP-1"
+          2 "eDP-1"
+          3 "HDMI-1"
+          4 "eDP-1"
+          5 "eDP-1"
+          6 "eDP-1"
+          7 "eDP-1"
+          8 "HDMI-1"
+          9 "eDP-1"
+          0 "eDP-1")))
 
 (use-package desktop-environment
   :after exwm
