@@ -537,4 +537,8 @@
   :ensure nil
   :hook (nxml-mode . lsp))
 
+(use-package dockerfile-mode
+  :config
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
 (use-package command-log-mode)

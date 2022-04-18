@@ -913,6 +913,15 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+*** Dockerfile
+
+#+begin_src emacs-lisp
+
+  (use-package dockerfile-mode
+    :config
+    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+#+end_src
 
 * Misc
 
