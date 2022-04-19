@@ -5,6 +5,7 @@
   - python3-pip
   - "@virtualization"
   - texlive-scheme-full
+  - docker
 
   # Ada compiler and build system
   - gcc-gnat

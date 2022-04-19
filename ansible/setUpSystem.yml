@@ -87,7 +87,9 @@
         name: "{{ exwm_user_name }}"
         create_home: yes
         append: true
-        groups: wheel
+        groups:
+          - wheel
+          - docker
         update_password: on_create
         password: "{{ exwm_user_password | password_hash('sha512') }}"
 
