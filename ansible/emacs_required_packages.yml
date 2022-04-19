@@ -12,6 +12,9 @@
   - feh
   - zathura-pdf-mupdf
 
+# The fonts used in org-mode
+  - iosevka-aile-fonts
+
 # Packages required by vterm
   - cmake
   - libtool

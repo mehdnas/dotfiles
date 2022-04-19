@@ -47,6 +47,13 @@
           - stow
         state: present
 
+    - name: Enable the dnf copr for Iosevka fonts
+      command:
+        cmd: dnf copr enable -y peterwu/iosevka
+        creates: /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:peterwu:iosevka.repo
+        # The dnf module does not provide this functionality
+        warn: false
+
     - name: Install Packages Required by Emacs Packages
       dnf:
         name: "{{ emacs_required_packages }}"
