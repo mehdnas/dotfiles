@@ -367,6 +367,7 @@ Vars file for required packages to be installed by ansible
 * Key Bindings
 
 ** evil
+
 #+begin_src emacs-lisp
 
   (use-package evil
@@ -704,6 +705,20 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Block Templates
+
+#+begin_src emacs-lisp
+
+  (defun mn/org-block-templates ()
+    (require 'org-tempo)
+    (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+    (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("py" . "src python"))
+    (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+    (add-to-list 'org-structure-template-alist '("json" . "src json")))
+
+#+end_src
+
 ** Org-Latex
 
 #+begin_src emacs-lisp
@@ -724,7 +739,8 @@ Vars file for required packages to be installed by ansible
     :config
     (mn/org-baseline-config)
     (mn/org-latex-config)
-    (mn/org-set-fonts))
+    (mn/org-set-fonts)
+    (mn/org-block-templates))
 
 #+end_src
 

@@ -446,6 +446,13 @@
   (set-face-attribute 'org-column nil :background nil)
   (set-face-attribute 'org-column-title nil :background nil))
 
+(defun mn/org-block-templates ()
+  (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
+  (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+  (add-to-list 'org-structure-template-alist '("json" . "src json")))
+
 (defun mn/org-latex-config ()
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex"))))
@@ -456,7 +463,8 @@
   :config
   (mn/org-baseline-config)
   (mn/org-latex-config)
-  (mn/org-set-fonts))
+  (mn/org-set-fonts)
+  (mn/org-block-templates))
 
 (use-package magit
   :bind ("C-M-," . magit-status)
