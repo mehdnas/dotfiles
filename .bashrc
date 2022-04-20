@@ -12,9 +12,9 @@ then
 fi
 
 # Minecraft path
-if ! [[ "$PATH" =~ "$HOME/Games/Minecraft:" ]]
+if ! [[ "$PATH" =~ "$HOME/.games/Minecraft:" ]]
 then
-    PATH="$HOME/Games/Minecraft:$PATH"
+    PATH="$HOME/.games/Minecraft:$PATH"
 fi
 
 # User binaries

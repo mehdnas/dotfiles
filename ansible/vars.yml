@@ -7,4 +7,4 @@
 - univ_lv_fstype: ext4
 
 - root_lv_name: root
-- root_lv_size: 32G
+- root_lv_size: 64G
