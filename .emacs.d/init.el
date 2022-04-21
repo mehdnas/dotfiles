@@ -447,6 +447,7 @@
   (set-face-attribute 'org-column-title nil :background nil))
 
 (defun mn/org-block-templates ()
+  (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
@@ -456,6 +457,20 @@
 (defun mn/org-latex-config ()
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex"))))
+
+(use-package evil-org
+  :after org
+  :hook ((org-mode . evil-org-mode)
+         (org-agenda-mode . evil-org-mode)
+         (evil-org-mode . (lambda ()
+                            (evil-org-set-key-theme '(navigation
+                                                      todo
+                                                      insert
+                                                      testobjects
+                                                      additional)))))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package org
   :defer t

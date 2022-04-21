@@ -729,6 +729,26 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Key bindings
+
+#+begin_src emacs-lisp
+
+  (use-package evil-org
+    :after org
+    :hook ((org-mode . evil-org-mode)
+           (org-agenda-mode . evil-org-mode)
+           (evil-org-mode . (lambda ()
+                              (evil-org-set-key-theme '(navigation
+                                                        todo
+                                                        insert
+                                                        testobjects
+                                                        additional)))))
+    :config
+    (require 'evil-org-agenda)
+    (evil-org-agenda-set-keys))
+
+#+end_src
+
 ** Final configuration for org mode
 
 #+begin_src emacs-lisp
