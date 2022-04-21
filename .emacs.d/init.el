@@ -83,7 +83,8 @@
             (lambda ()
               (pcase exwm-class-name
                 ;;("Vimb" (exwm-workspace-rename-buffer (format "vimb: %s" exwm-title)))
-                ("qutebrowser" (exwm-workspace-rename-buffer (format "Qutebrowser: %s" exwm-title))))))
+                ("qutebrowser" (exwm-workspace-rename-buffer (format "Web: %s" exwm-title)))
+                ("Zathura" (exwm-workspace-rename-buffer (format "PDF: %s" exwm-title))))))
   (mn/run-composite-manager)
   (exwm-enable))
 
