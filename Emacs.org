@@ -3,6 +3,10 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ./.emacs.d/init.el :mkdirp yes
 #+PROPERTY: header-args:yaml :tangle ./ansible/emacs_required_packages.yml :mkdirp yes
 
+This is my Emacs configuration. It's almost alwais under development and it's
+being inspired by multiple online resources, Especialy, David Wilson's
+[[https://config.daviwil.com/][configuration]] and his [[https://www.youtube.com/c/SystemCrafters][System Crafters Youtube channel]].
+
 * Package System Setup
 
 #+begin_src emacs-lisp
