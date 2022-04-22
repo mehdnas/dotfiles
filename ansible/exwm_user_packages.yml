@@ -6,6 +6,7 @@
   - "@virtualization"
   - texlive-scheme-full
   - docker
+  - gimp
 
   # Ada compiler and build system
   - gcc-gnat

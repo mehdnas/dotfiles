@@ -653,7 +653,7 @@ Vars file for required packages to be installed by ansible
       '((emacs-lisp . t))))
 #+end_src
 
-** Fonts and bullets
+** Bullets
 
 #+begin_src emacs-lisp
 
@@ -663,6 +663,8 @@ Vars file for required packages to be installed by ansible
     :custom (org-superstar-remove-leading-stars t))
 
 #+end_src
+
+** Fonts
 
 #+begin_src emacs-lisp
 
@@ -703,6 +705,15 @@ Vars file for required packages to be installed by ansible
 
   # The fonts used in org-mode
     - iosevka-aile-fonts
+
+#+end_src
+
+** Auto-show Markup Symbols
+
+#+begin_src emacs-lisp
+
+  (use-package org-appear
+    :hook (org-mode . org-appear-mode))
 
 #+end_src
 

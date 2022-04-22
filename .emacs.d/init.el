@@ -447,6 +447,9 @@
   (set-face-attribute 'org-column nil :background nil)
   (set-face-attribute 'org-column-title nil :background nil))
 
+(use-package org-appear
+  :hook (org-mode . org-appear-mode))
+
 (defun mn/org-block-templates ()
   (require 'org-tempo)
   (add-to-list 'org-structure-template-alist '("sh" . "src sh"))
