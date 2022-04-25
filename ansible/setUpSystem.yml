@@ -137,6 +137,39 @@
         name: lvm2
         state: present
 
+    # set up and add the second disk to the lv
+    - name: Read second disk info
+      parted:
+        device: '{{ second_disk_device }}'
+        unit: MiB
+      register: second_disk_info
+
+    - name: Show second disk info
+      debug:
+        msg: '{{ second_disk_info }}'
+
+    - name: Delete all partitions if disk hasn't been set up
+      parted:
+        device: '{{ second_disk_device }}'
+        number: '{{ item.num }}'
+        state: 'absent'
+      loop: '{{ second_disk_info.partitions }}'
+      when: >-
+        second_disk_info.disk.size != second_disk_info.partitions[0].size
+        or second_disk_info.partitions[0].flag != [ "lvm" ]
+
+    - name: Create the partition to add to vg
+      parted:
+        device: '{{ second_disk_device }}'
+        number: 1
+        flags: [ "lvm" ]
+        state: present
+
+    - name: Add the second disk to the default vg
+      lvg:
+        vg: '{{ default_fedora_server_vg }}'
+        pvs: '{{ default_fedora_server_lvm_partition }},{{ second_disk_partition }}'
+
     - name: Make an LV for university files
       lvol:
         vg: "{{ default_fedora_server_vg }}"
