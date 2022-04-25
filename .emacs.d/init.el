@@ -456,9 +456,11 @@
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
   (add-to-list 'org-structure-template-alist '("yaml" . "src yaml"))
+  (add-to-list 'org-structure-template-alist '("ada" . "src ada"))
   (add-to-list 'org-structure-template-alist '("json" . "src json")))
 
 (defun mn/org-latex-config ()
+  ;; Languages
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex"))))
 
@@ -477,6 +479,7 @@
   (evil-org-agenda-set-keys))
 
 (use-package org
+  :pin org
   :defer t
   :hook (org-mode . mn/org-mode-setup)
   :config

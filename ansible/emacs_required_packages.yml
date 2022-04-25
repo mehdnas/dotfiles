@@ -6,6 +6,8 @@
 
 # used by desktop environment to change screen brightness
   - brightnessctl
+# For taking screenshots
+  - flameshot
 
 # Packages for opning files from emacs
   # - mpv-mpris # needs the rpm fusion repos
@@ -14,6 +16,9 @@
 
 # The fonts used in org-mode
   - iosevka-aile-fonts
+
+# Latex
+  - texlive-scheme-full
 
 # Packages required by vterm
   - cmake
