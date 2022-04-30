@@ -517,6 +517,37 @@
   :bind ("C-c t" . treemacs-select-window)
   :after lsp-mode)
 
+(use-package bufler
+  :bind (("C-M-j" . bufler-switch-buffer)
+         ("C-M-k" . bufler-workspace-frame-set))
+  :config
+  (evil-collection-define-key 'normal 'bufler-list-mod-map
+    (kbd "RET") 'bufler-list-buffer-switch
+    (kbd "M-RET") 'bufler-list-buffer-peek
+    "D" 'bufler-list-buffer-kill)
+
+  (setf bufler-groups
+        (bufler-defgroups
+          (group (auto-workspace))
+          (group (auto-projectile))
+          (group
+           (group-or "Help/Info"
+                     (mode-match "*Help*" (rx bos (or "help-" "helpful-")))
+                     (mode-match "*Info*" (rx bos "info-"))))
+          (group
+           (group-and
+            "*Special*"
+            (name-match "**Special**"
+                        (rx bos "*" (or "Messages" "Warnings" "scratch" "Backtrace" "Pinentry") "*"))
+            (lambda (buffer)
+              (unless (or (funcall (mode-match "Magit" (rx bos "magit-status"))
+                                   buffer)
+                          (funcall (mode-match "Dired" (rx bos "dired"))
+                                   buffer)
+                          (funcall (auto-file) buffer))
+                "*Special*"))))
+          (auto-mode))))
+
 (use-package lsp-mode
   :commands lsp
   :bind (:map lsp-mode-map
