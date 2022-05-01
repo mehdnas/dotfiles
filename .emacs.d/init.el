@@ -134,6 +134,13 @@
   (define-key evil-window-map "u" 'winner-undo)
   (define-key evil-window-map "U" 'winner-redo))
 
+(use-package edwina
+  :ensure t
+  :config
+  (setq display-buffer-base-action '(display-buffer-below-selected))
+  (edwina-setup-dwm-keys)
+  (edwina-mode 1))
+
 (setq inhibit-startup-message t)
 
 (scroll-bar-mode -1)        ; Disable visible scrollbar
