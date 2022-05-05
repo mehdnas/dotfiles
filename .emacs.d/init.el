@@ -158,7 +158,7 @@
 
 (use-package doom-themes
   :init
-  (load-theme 'doom-palenight t)
+  (load-theme 'doom-one t)
   (doom-themes-visual-bell-config))
 
 (use-package all-the-icons)
@@ -167,8 +167,8 @@
   :init (doom-modeline-mode 1)
   :custom ((doom-modeline-height 15)))
 
-(set-frame-parameter (selected-frame) 'alpha '(92 . 92))
-(add-to-list 'default-frame-alist '(alpha . (92 . 92)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 (setq mouse-wheel-scroll-amount '(2 ((shift) . 1)))
 (setq mouse-wheel-progressive-speed nil)
@@ -522,7 +522,9 @@
 
 (use-package treemacs
   :bind ("C-c t" . treemacs-select-window)
-  :after lsp-mode)
+  :after lsp-mode
+  :custom
+  (treemacs-position 'right))
 
 (use-package bufler
   :bind (("C-M-j" . bufler-switch-buffer)

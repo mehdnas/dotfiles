@@ -253,11 +253,12 @@ Vars file for required packages to be installed by ansible
 #+end_src
 
 *** Color Theme
+
 #+begin_src emacs-lisp
 
   (use-package doom-themes
     :init
-    (load-theme 'doom-palenight t)
+    (load-theme 'doom-one t)
     (doom-themes-visual-bell-config))
 
 #+end_src
@@ -278,8 +279,8 @@ Vars file for required packages to be installed by ansible
 
 #+begin_src emacs-lisp
 
-  (set-frame-parameter (selected-frame) 'alpha '(92 . 92))
-  (add-to-list 'default-frame-alist '(alpha . (92 . 92)))
+  (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+  (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 #+end_src
 
@@ -860,7 +861,9 @@ Vars file for required packages to be installed by ansible
 
   (use-package treemacs
     :bind ("C-c t" . treemacs-select-window)
-    :after lsp-mode)
+    :after lsp-mode
+    :custom
+    (treemacs-position 'right))
 
 #+end_src
 
