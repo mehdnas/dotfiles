@@ -41,6 +41,8 @@
           ?\M-:
           ?\C-\M-n  ;; Next workspace
           ?\C-\     ;; Ctrl+Space
+          ?\C-\M-j
+          ?\C-\M-k
           ?\C-\;))
 
   (setq exwm-input-global-keys
@@ -543,6 +545,8 @@
            (group-or "Help/Info"
                      (mode-match "*Help*" (rx bos (or "help-" "helpful-")))
                      (mode-match "*Info*" (rx bos "info-"))))
+          (group-or "PDFs"
+                    (name-match "PDF" (rx bos "PDF")))
           (group
            (group-and
             "*Special*"
