@@ -241,6 +241,8 @@
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
 
+(set-default 'truncate-lines t)
+
 (use-package evil
   :init
   (setq evil-want-integration t)
