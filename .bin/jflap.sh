@@ -1,3 +1,3 @@
 #!/bin/bash
 
-java -jar $HOME/.bin/jflap7.1.jar
+java -jar $HOME/.bin/JFLAP7.1.jar
