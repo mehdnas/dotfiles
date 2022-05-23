@@ -394,6 +394,7 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+
 * Key Bindings
 
 ** evil
@@ -779,6 +780,14 @@ Vars file for required packages to be installed by ansible
 
 #+end_src
 
+** Presentations
+
+#+begin_src emacs-lisp
+
+(use-package org-present)
+
+#+end_src
+
 ** Key bindings
 
 #+begin_src emacs-lisp
@@ -836,8 +845,9 @@ Vars file for required packages to be installed by ansible
 
   (use-package vterm
     :commands vterm
+    :bind ("C-c e" . vterm-send-escape)
     :config
-    (setq term-prompt-regexp "^\[[^$]*\]$ *")
+    (setq term-prompt-regexp "^ > ")
     (setq vterm-max-scrollback 10000))
 
 #+end_src

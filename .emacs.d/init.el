@@ -475,6 +475,8 @@
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex"))))
 
+(use-package org-present)
+
 (use-package evil-org
   :after org
   :hook ((org-mode . evil-org-mode)
@@ -507,8 +509,9 @@
 
 (use-package vterm
   :commands vterm
+  :bind ("C-c e" . vterm-send-escape)
   :config
-  (setq term-prompt-regexp "^\[[^$]*\]$ *")
+  (setq term-prompt-regexp "^ > ")
   (setq vterm-max-scrollback 10000))
 
 (use-package projectile
