@@ -33,11 +33,10 @@
         name: "@LXDE Desktop"
         state: present
 
-    - name: Install the LightDM display manager
+    - name: Install the GDM display manager
       dnf:
         name:
-          - lightdm
-          - lightdm-gtk-greeter
+          - gdm
         state: present
 
     - name: Install Emacs and packages for dotfiles management
@@ -70,9 +69,9 @@
         name: lxdm
         enabled: no
 
-    - name: Enable LightDM display manager
+    - name: Enable GDM display manager
       service:
-        name: lightdm
+        name: gdm
         enabled: yes
 
     - name: Touchpad configuration
